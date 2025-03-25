@@ -1,0 +1,42 @@
+name: Backend CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: 📦 Install Dependencies
+        working-directory: backend
+        run: npm install
+
+      - name: 🔍 Lint Code (Optional, if you add ESLint)
+        working-directory: backend
+        run: |
+          npm install eslint --save-dev
+          npx eslint .
+
+      - name: 🚀 Run Tests (Optional, if you add tests)
+        working-directory: backend
+        run: npm test
+
+      - name: ⏩ Deploy to Server (Optional)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Deployment command here (e.g., SSH to server and pull latest code)"
