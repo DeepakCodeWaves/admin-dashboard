@@ -23,5 +23,4 @@ build/
 *.swp
 
 # Dependencies
-package-lock.json
 yarn.lock
