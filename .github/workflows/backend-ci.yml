@@ -41,7 +41,7 @@ jobs:
       #   run: npm test
       #   working-directory: backend
 
-      - name: ⏩ Deploy to Server (Only on Main Branch)
-        if: github.ref == 'refs/heads/main'
-        run: |
-          ssh user@your-server "cd /path/to/backend && git pull origin main && npm install && pm2 restart backend"
+      # - name: ⏩ Deploy to Server (Only on Main Branch)
+      #   if: github.ref == 'refs/heads/main'
+      #   run: |
+      #     ssh user@your-server "cd /path/to/backend && git pull origin main && npm install && pm2 restart backend"
