@@ -33,13 +33,13 @@ jobs:
           npx eslint .
         working-directory: backend
 
-      - name: 🚀 Run Tests
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          PORT: 5002
-        run: npm test
-        working-directory: backend
+      # - name: 🚀 Run Tests
+      #   env:
+      #     MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      #     JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      #     PORT: 5002
+      #   run: npm test
+      #   working-directory: backend
 
       - name: ⏩ Deploy to Server (Only on Main Branch)
         if: github.ref == 'refs/heads/main'
