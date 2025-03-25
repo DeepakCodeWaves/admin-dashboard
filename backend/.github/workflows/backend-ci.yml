@@ -23,20 +23,24 @@ jobs:
           cache: "npm"
 
       - name: 📦 Install Dependencies
-        working-directory: backend
         run: npm install
-
-      - name: 🔍 Lint Code (Optional, if you add ESLint)
         working-directory: backend
+
+      - name: 🔍 Lint Code
         run: |
           npm install eslint --save-dev
           npx eslint .
-
-      - name: 🚀 Run Tests (Optional, if you add tests)
         working-directory: backend
-        run: npm test
 
-      - name: ⏩ Deploy to Server (Optional)
+      - name: 🚀 Run Tests
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          PORT: 5002
+        run: npm test
+        working-directory: backend
+
+      - name: ⏩ Deploy to Server (Only on Main Branch)
         if: github.ref == 'refs/heads/main'
         run: |
-          echo "Deployment command here (e.g., SSH to server and pull latest code)"
+          ssh user@your-server "cd /path/to/backend && git pull origin main && npm install && pm2 restart backend"

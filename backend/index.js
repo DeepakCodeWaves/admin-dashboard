@@ -40,8 +40,13 @@ console.log(
   process.env.MONGODB_URI ? "✅ Yes" : "❌ No, check .env file!"
 );
 
-// Start Server
-app.listen(port, () => console.log(`🚀 Server running on port ${port}`));
+// Export app for testing
+module.exports = app;
+
+// Only start the server if it's not being tested
+if (require.main === module) {
+  app.listen(port, () => console.log(`🚀 Server running on port ${port}`));
+}
 
 // Handle unexpected errors
 process.on("uncaughtException", (err) => {
