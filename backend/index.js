@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
 const redis = require("redis");
 
 const app = express();
@@ -116,7 +117,7 @@ app.get("/api/massive-data", async (req, res) => {
 
 // Routes
 app.use("/api/auth", authRoutes);
-
+app.use("/api", uploadRoutes);
 const port = process.env.PORT || 5002;
 console.log(
   "🔍 Loaded MongoDB URI:",
